@@ -31,7 +31,7 @@ public class BoardApplication {
 		Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
 
 		sessionFactory.setMapperLocations(res);
-
+		sessionFactory.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml"));
 		return sessionFactory.getObject();
 	}
 

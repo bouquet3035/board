@@ -29,29 +29,21 @@ public class BoardApplicationTests {
         System.out.println("sqlSession : "+sqlSession);
         
     }
-	
-	/*
-	 * bno
-       title
-       content
-       writer
-       regdate
-       viewcnt
-	 */
-	
 
 	@Test
     public void testMapper() throws Exception{//작성
-        
         BoardVO vo = new BoardVO();
-        
         vo.setTitle("제목입니다.");
         vo.setContent("내용입니다.");
         vo.setWriter("작성자");
         vo.setRegdate("2018.12.01");
         vo.setViewcnt(0);
         mapper.boardInsert(vo);
-        
+	}
+	
+	@Test
+	public void testSelect() throws Exception{
+		mapper.boardSelect();
 	}
 }
 
