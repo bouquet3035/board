@@ -8,5 +8,7 @@ import com.board.domain.BoardVO;
 @Mapper
 public interface BoardMapper {
 	public void boardInsert(BoardVO board) throws Exception;
+	public void boardInsertForEach(BoardVO board) throws Exception;
 	public List<BoardVO> boardSelect () throws Exception;
+	public List<BoardVO> boardSelectWhere (BoardVO board) throws Exception; 
 }

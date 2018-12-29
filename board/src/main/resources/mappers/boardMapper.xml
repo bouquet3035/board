@@ -11,8 +11,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (#{title},#{content},#{writer},#{regdate},#{viewcnt})
     </insert>
     
+    <insert id="boardInsertForEach" parameterType="com.board.domain.BoardVO">
+        insert into tbl_board (title,content,writer,regdate,viewcnt)
+            values
+        <foreach collection="BoardVoArray" item="a" separator="," >
+        	( 
+    	  	#{a.title}
+    	  	,#{a.content}
+    	  	,#{a.writer}
+    	  	,#{a.regdate}
+    	  	,#{a.viewcnt}
+    	  	)
+    	 </foreach>
+    </insert>
+    
     <select id="boardSelect" resultType="com.board.domain.BoardVO">
-    	select * from tbl_board
+    	select bno
+    	       , title 
+    	       , content
+    	       , writer
+    	       , regdate
+    	       , viewcnt
+    	  from tbl_board
+    </select>
+    
+    <select id="boardSelectWhere" resultType="com.board.domain.BoardVO" >
+    	select bno
+    	       , title 
+    	       , content
+    	       , writer
+    	       , regdate
+    	       , viewcnt
+    	  from tbl_board
+    	  <where>
+    	  	<if test="bno != null">
+    	  		bno = #{bno}
+    	  	</if>
+    	  	<if test="title != null">
+    	  	   and title = #{title}
+    	  	</if>
+    	  	<if test="bnoArray != null">
+    	  		and bno in
+    	  		<foreach collection="bnoArray" item="a" separator="," open="(" close=")"> 
+    	  			#{a}
+    	  		</foreach>
+    	  	</if>
+    	  	<if test="titleArray != null">
+    	  		and title in
+    	  		<foreach collection="titleArray" item="a" separator="," open="(" close=")"> 
+    	  			#{a}
+    	  		</foreach>
+    	  	</if>
+    	  </where> 
     </select>
  
 </mapper>
