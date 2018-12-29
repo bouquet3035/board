@@ -2,8 +2,8 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 /bin/
-/board/bin/
-
+board\bin
+.class
 ### STS ###
 .apt_generated
 .classpath
@@ -12,7 +12,7 @@
 .settings
 .springBeans
 .sts4-cache
-
+.class
 ### IntelliJ IDEA ###
 .idea
 *.iws
